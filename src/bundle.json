@@ -1,6 +1,6 @@
 {
    "name": "Marshmallow",
-   "version": "0.1.0",
+   "version": "0.2.0",
    "libs": {
       "ColorLab": "libs/ColorLab.js",
       "Mushroom": "libs/Mushroom.js",
@@ -13,6 +13,10 @@
       "App": {
          "script": "components/app/app.js",
          "style": "components/app/app.css"
+      },
+      "Logo": {
+         "script": "components/logo/logo.js",
+         "style": "components/logo/logo.css"
       }
    }
 }

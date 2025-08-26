@@ -1,0 +1,28 @@
+:host {
+   --size: "$size";
+   --background: "$background";
+   --foreground: "$foreground";
+   
+   display: inline-block;
+   position: relative;
+   aspect-ratio: 1;
+   width: var(--size);
+   vertical-align: middle;
+}
+
+:host svg {
+   width: 100%;
+}
+
+:host svg .bg {
+   fill: var(--background)
+}
+:host svg .fg {
+   fill: var(--foreground)
+}
+:host svg .line {
+   fill: none; 
+   stroke: var(--background);
+   stroke-width: 20; 
+   stroke-linecap: round;
+}

@@ -28,7 +28,7 @@ const MarshmallowTools = {
       } else {
          output.color = color;
       }
-      output.innerColor = this.C.getBestContrastColor(output.bg);
+      output.innerColor = this.C.getBestContrastColor(output.color);
       
       return output
    }

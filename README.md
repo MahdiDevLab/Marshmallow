@@ -2,6 +2,7 @@
 
 ### todo list
 - [x] App
+- [x] Logo
 - [ ] Button
 - [ ] Buttons Group
 - [ ] Radio
@@ -28,16 +29,17 @@
 - [ ] Color
 - [ ] Text Area
 - [ ] Text field
-  - [ ] Text
-  - [ ] Email
-  - [ ] Number
-  - [ ] Tel
-  - [ ] Password
-- [ ] Text View
-  - [ ] Display
-  - [ ] Headline
-  - [ ] Title
-- [ ] Logo
+   - [ ] Text
+   - [ ] Email
+   - [ ] Number
+   - [ ] Tel
+   - [ ] Password
+- [ ] Type Scale 
+   - [ ] Display
+   - [ ] Headline
+   - [ ] Title
+   - [ ] Body
+   - [ ] Label 
 - [ ] Palette
 - [ ] Window
 - [ ] Phone
