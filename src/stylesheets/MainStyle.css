@@ -1,0 +1,12 @@
+/* defaults */
+*{
+   box-sizing: border-box;
+   -webkit-tap-highlight-color: transparent;
+}
+
+body {
+   margin: 0;
+   bottom: 0;
+   width: 100vw;
+   min-height: 100vh;
+}

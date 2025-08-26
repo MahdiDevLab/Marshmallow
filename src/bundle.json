@@ -1,0 +1,18 @@
+{
+   "name": "Marshmallow",
+   "version": "0.1.0",
+   "libs": {
+      "ColorLab": "libs/ColorLab.js",
+      "Mushroom": "libs/Mushroom.js",
+      "MarshmallowTools": "libs/MarshmallowTools.js"
+   },
+   "stylesheets": {
+      "MainStyle": "stylesheets/MainStyle.css"
+   },
+   "components": {
+      "App": {
+         "script": "components/app/app.js",
+         "style": "components/app/app.css"
+      }
+   }
+}
