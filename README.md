@@ -1,7 +1,7 @@
 # Marshmallow
 
 ### todo list
-- [×] App
+- [x] App
 - [ ] Button
 - [ ] Buttons Group
 - [ ] Radio
