@@ -15,6 +15,7 @@
 - [ ] Grid
 - [ ] Flex
 - [ ] Divider
+- [ ] Scroll Bar
 - [ ] Progress
   - [ ] Linear
   - [ ] Circular
@@ -24,9 +25,10 @@
 - [ ] Appbar
 - [ ] Menu
 - [ ] Dialog
+- [ ] Toast 
 - [ ] Pick
-- [ ] File
-- [ ] Color
+   - [ ] File
+   - [ ] Color
 - [ ] Text Area
 - [ ] Text field
    - [ ] Text

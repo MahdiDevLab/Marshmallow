@@ -1,4 +1,4 @@
-// Mushroom v5.3.0 (Marshmallow EDITION!)
+// Mushroom v5.3.1 (Marshmallow EDITION!)
 class Mushroom {
    
    //-------------------------
@@ -146,7 +146,7 @@ class Mushroom {
    //       Constructor
    //-------------------------
    constructor(configs = {}) {
-      this.version = "5.3.0";
+      this.version = "5.3.1";
       this.#setupConfigs(configs);
       this.#setupThemeChange();
    }
@@ -239,7 +239,7 @@ class Mushroom {
       };
       
       let C = this.#C;
-      let N = ['red', 'orange', 'yellow', 'lime', 'green', 'spring-green', 'sky-blue', 'royal-blue', 'blue', 'indigo', 'purple', 'pink'];
+      let N = ['red', 'orange', 'yellow', 'lime', 'green', 'springgreen', 'skyblue', 'royalblue', 'blue', 'indigo', 'purple', 'pink'];
       let { H, S } = this.#CL.toHslChannels(C.color);
       let steps = 360 / N.length;
       

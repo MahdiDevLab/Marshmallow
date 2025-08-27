@@ -1143,24 +1143,24 @@
             
             MB.addVariables('DefineElements', {
                type: 'inline',
-               value: Object.keys(this.Config.components).map(i => `customElements.define('m-${SplitPascalCase(i).split(' ').join().toLowerCase()}', ${i})`).join('\n'),
+               value: this.Config.components.map(i => `customElements.define('m-${SplitPascalCase(i).split(' ').join().toLowerCase()}', ${i})`).join('\n'),
             });
             
             SB.setType('url');
             SB.setKey('@KEY')
             SB.setTemplate({
                type: 'inline',
-               value: '@' + Object.keys(this.Config.components).join('\n@'),
+               value: '@' + this.Config.components.join('\n@'),
             });
             
-            for (let [key, src] of Object.entries(this.Config.components)) {
+            for (let key of this.Config.components) {
                SB.addVariables(key, {
                   type: 'subPlayground',
                   value: {
                      key: '<KEY/>',
-                     template: BaseUrl(src.script),
+                     template: BaseUrl(`components/${key.toLowerCase()}/${key.toLowerCase()}.js`),
                      variables: {
-                        CSS: BaseUrl(src.style)
+                        CSS: BaseUrl(`components/${key.toLowerCase()}/${key.toLowerCase()}.css`)
                      }
                   }
                })
@@ -1174,7 +1174,6 @@
                   type: 'inline',
                   value: output,
                });
-               
                MB.bundle();
             }
             

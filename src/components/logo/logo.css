@@ -1,7 +1,7 @@
 :host {
    --size: "$size";
-   --background: "$background";
-   --foreground: "$foreground";
+   --color: "$color";
+   --inner-color: "$innerColor";
    
    display: inline-block;
    position: relative;
@@ -15,14 +15,14 @@
 }
 
 :host svg .bg {
-   fill: var(--background)
+   fill: var(--color)
 }
 :host svg .fg {
-   fill: var(--foreground)
+   fill: var(--inner-color)
 }
 :host svg .line {
    fill: none; 
-   stroke: var(--background);
+   stroke: var(--color);
    stroke-width: 20; 
    stroke-linecap: round;
 }

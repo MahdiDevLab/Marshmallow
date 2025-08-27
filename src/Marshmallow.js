@@ -19,8 +19,7 @@
       /* Private Variables */
       #M;
       #C = {
-         color: 'teal',
-         theme: 'dark',
+         theme: 'light',
       };
       #O = {
          styleElement: null,
@@ -44,9 +43,9 @@
          return new Mushroom({
             prefix: 'm',
             sprout: false,
-            color: this.#C.color,
+            color: 'deepskyblue',
             theme: this.#C.theme,
-            contrast: 0,
+            contrast: 50,
          });
       }
       #grow() {

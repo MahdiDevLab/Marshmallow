@@ -17,8 +17,8 @@ class Logo extends HTMLElement {
       this.#CSS = `<CSS/>`
       this.#ATT = {
          size: 'var(--m-logo-size, 100%)',
-         background: 'var(--m-logo-background, #000)',
-         foreground: 'var(--m-logo-foreground, #fff)',
+         color: 'var(--m-logo-color, #000)',
+         innerColor: 'var(--m-logo-inner-color, #fff)',
       }
       
       // render 
@@ -29,7 +29,7 @@ class Logo extends HTMLElement {
    // Observed Attributes
    //---------------------
    static get observedAttributes() {
-      return ['size','background','foreground'];
+      return ['size','color','inner-color'];
    }
    attributeChangedCallback(name, oldValue, newValue) {
       switch (name) {
@@ -38,21 +38,21 @@ class Logo extends HTMLElement {
             this.#updateStyles();
             break;
          }
-         case 'background': {
+         case 'color': {
             let {color, innerColor} = this.#MT.getColors(newValue);
             if (color) {
-               this.#ATT.background = color;
-               if (!this.hasAttribute('foreground')) {
-                  this.setAttribute('foreground', innerColor);
+               this.#ATT.color = color;
+               if (!this.hasAttribute('inner-color')) {
+                  this.setAttribute('inner-color', innerColor);
                }
                this.#updateStyles();
             }
             break;
          }
-         case 'foreground': {
+         case 'inner-color': {
             let {color} = this.#MT.getColors(newValue);
             if (color) {
-               this.#ATT.foreground = color;
+               this.#ATT.innerColor = color;
                this.#updateStyles();
             }
             break;
@@ -72,8 +72,8 @@ class Logo extends HTMLElement {
       let css = this.#CSS;
       const vals = {
          size: this.#ATT.size,
-         background: this.#ATT.background,
-         foreground: this.#ATT.foreground,
+         color: this.#ATT.color,
+         innerColor: this.#ATT.innerColor,
       };
       
       for (let key in vals) {

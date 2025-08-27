@@ -9,14 +9,7 @@
    "stylesheets": {
       "MainStyle": "stylesheets/MainStyle.css"
    },
-   "components": {
-      "App": {
-         "script": "components/app/app.js",
-         "style": "components/app/app.css"
-      },
-      "Logo": {
-         "script": "components/logo/logo.js",
-         "style": "components/logo/logo.css"
-      }
-   }
+   "components": [
+      "App","Logo"
+   ]
 }
