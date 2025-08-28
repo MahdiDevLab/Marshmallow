@@ -1,4 +1,4 @@
-// Mushroom v5.3.1 (Marshmallow EDITION!)
+// Mushroom v5.3.2 (Marshmallow EDITION!)
 class Mushroom {
    
    //-------------------------
@@ -146,7 +146,7 @@ class Mushroom {
    //       Constructor
    //-------------------------
    constructor(configs = {}) {
-      this.version = "5.3.1";
+      this.version = "5.3.2";
       this.#setupConfigs(configs);
       this.#setupThemeChange();
    }
@@ -249,7 +249,7 @@ class Mushroom {
       for (let i = 0; i < N.length; i++) {
          result[N[i]] = {
             H: (i * steps) % 360,
-            S: Math.min(100, ratios[i] * S)
+            S: H === 0 ? 100 : Math.min(100, ratios[i] * S)
          };
       }
       
