@@ -1,4 +1,4 @@
-// Mushroom v5.3.2 (Marshmallow EDITION!)
+// Mushroom v5.3.3 (Marshmallow EDITION!)
 class Mushroom {
    
    //-------------------------
@@ -146,7 +146,7 @@ class Mushroom {
    //       Constructor
    //-------------------------
    constructor(configs = {}) {
-      this.version = "5.3.2";
+      this.version = "5.3.3";
       this.#setupConfigs(configs);
       this.#setupThemeChange();
    }
@@ -568,7 +568,7 @@ class Mushroom {
    }
    #CLPalette() {
       let C = this.#C;
-      let L = (C.contrast === 'auto') ? this.#CL.getLightness(C.color) : C.contrast;
+      let L = this.#CL.getLightness(C.color);
       let theme = this.currentTheme();
       let result = {};
       
