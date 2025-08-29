@@ -45,17 +45,10 @@ class Logo extends HTMLElement {
       switch (name) {
          case 'size': {
             this.#ATTRIBUTES[name] = newValue;
-            this.#updateStyles(); // ✅ اصلاح شد
+            this.#updateStyles(); 
             break;
          }
-         case 'color': {
-            let { color } = this.#MT.getColors(newValue);
-            if (color) {
-               this.#ATTRIBUTES[name] = color;
-               this.#updateStyles();
-            }
-            break;
-         }
+         case 'color': 
          case 'inner-color': {
             let { color } = this.#MT.getColors(newValue);
             if (color) {

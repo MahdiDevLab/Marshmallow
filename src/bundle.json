@@ -10,6 +10,6 @@
       "MainStyle": "stylesheets/MainStyle.css"
    },
    "components": [
-      "App","Logo"
+      "App","Logo","Divider"
    ]
 }

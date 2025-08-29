@@ -1,0 +1,17 @@
+:host {
+   --color: "$color";
+   --weight: "$weight";
+   --type: "$type";
+   --gap: "$gap";
+   
+   display: block;
+   width: 100%;
+   height: 0;
+   box-sizing: border-box;
+   border-top: var(--color) var(--weight) var(--type);
+   margin: var(--gap) 0;
+}
+
+:host([round]){
+   border-radius: 100vh;
+}

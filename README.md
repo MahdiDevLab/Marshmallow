@@ -3,6 +3,7 @@
 ### todo list
 - [x] App
 - [x] Logo
+- [x] Divider
 - [ ] Button
 - [ ] Buttons Group
 - [ ] Radio
@@ -14,7 +15,6 @@
 - [ ] Card
 - [ ] Grid
 - [ ] Flex
-- [ ] Divider
 - [ ] Scroll Bar
 - [ ] Progress
   - [ ] Linear

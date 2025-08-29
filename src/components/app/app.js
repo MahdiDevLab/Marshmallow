@@ -42,14 +42,7 @@ class App extends HTMLElement {
       }
       
       switch (name) {
-         case 'color': {
-            let { color } = this.#MT.getColors(newValue);
-            if (color) {
-               this.#ATTRIBUTES[name] = color;
-               this.#updateStyles();
-            }
-            break;
-         }
+         case 'color': 
          case 'inner-color': {
             let { color } = this.#MT.getColors(newValue);
             if (color) {
