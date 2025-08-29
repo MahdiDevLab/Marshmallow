@@ -1,7 +1,7 @@
 :host {
    --size: "$size";
    --color: "$color";
-   --inner-color: "$innerColor";
+   --inner-color: "$inner-color";
    
    display: inline-block;
    position: relative;

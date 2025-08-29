@@ -2,24 +2,25 @@ class Logo extends HTMLElement {
    //------------------
    // Private Variable 
    //------------------
-   #ELM; // Element 
-   #ATT; // Attributes 
-   #CSS; // CSS Code
-   #MT; // Marshmallow Tools
+   #MT;
+   #CSS;
+   #ELEMENT;
+   #ATTRIBUTES;
+   #DEFAULT_ATTRIBUTES = {
+      'size': 'var(--m-logo-size, 100%)',
+      'color': 'var(--m-logo-color, #000)',
+      'inner-color': 'var(--m-logo-inner-color, #fff)',
+   }
    
    //-------------
    // Constructor
    //-------------
    constructor() {
       super();
-      this.#ELM = this.attachShadow({ mode: 'open' });
+      this.#ELEMENT = this.attachShadow({ mode: 'open' });
       this.#MT = MarshmallowTools;
-      this.#CSS = `<CSS/>`
-      this.#ATT = {
-         size: 'var(--m-logo-size, 100%)',
-         color: 'var(--m-logo-color, #000)',
-         innerColor: 'var(--m-logo-inner-color, #fff)',
-      }
+      this.#CSS = `<CSS/>`;
+      this.#ATTRIBUTES = { ...this.#DEFAULT_ATTRIBUTES };
       
       // render 
       this.#render();
@@ -32,30 +33,29 @@ class Logo extends HTMLElement {
       return ['size','color','inner-color'];
    }
    attributeChangedCallback(name, oldValue, newValue) {
+      if (newValue === null) {
+         this.#ATTRIBUTES[name] = this.#DEFAULT_ATTRIBUTES[name];
+         this.#updateStyles();
+         return;
+      }
       switch (name) {
          case 'size': {
-            this.#ATT.size = newValue;
-            this.#updateStyles();
-            break;
+            this.#ATTRIBUTES[name] = newValue;
+            this.#updateStyles;
          }
          case 'color': {
-            let {color, innerColor} = this.#MT.getColors(newValue);
+            let {color} = this.#MT.getColors();
             if (color) {
-               this.#ATT.color = color;
-               if (!this.hasAttribute('inner-color')) {
-                  this.setAttribute('inner-color', innerColor);
-               }
-               this.#updateStyles();
+               this.#ATTRIBUTES[name] = color;
+               this.#updateStyles;
             }
-            break;
          }
          case 'inner-color': {
-            let {color} = this.#MT.getColors(newValue);
+            let {color} = this.#MT.getColors();
             if (color) {
-               this.#ATT.innerColor = color;
-               this.#updateStyles();
+               this.#ATTRIBUTES[name] = color;
+               this.#updateStyles;
             }
-            break;
          }
       }
    }
@@ -64,16 +64,15 @@ class Logo extends HTMLElement {
    // private Methods
    //-----------------
    #updateStyles() {
-      const style = this.#ELM.querySelector('style');
+      const style = this.#ELEMENT.querySelector('style');
       style.textContent = this.#getStyle();
    }
-   
    #getStyle() {
       let css = this.#CSS;
       const vals = {
-         size: this.#ATT.size,
-         color: this.#ATT.color,
-         innerColor: this.#ATT.innerColor,
+         'size': this.#ATTRIBUTES['size'],
+         'color': this.#ATTRIBUTES['color'],
+         'inner-color': this.#ATTRIBUTES['inner-color'],
       };
       
       for (let key in vals) {
@@ -82,9 +81,8 @@ class Logo extends HTMLElement {
       
       return css;
    }
-   
    #render() {
-      this.#ELM.innerHTML = `
+      this.#ELEMENT.innerHTML = `
          <style>
             ${this.#getStyle()}
          </style>
@@ -103,6 +101,20 @@ class Logo extends HTMLElement {
       this.setAttribute('size', val);
    }
    get size() {
-      return this.#ATT.size;
+      return this.#ATTRIBUTES['size'];
+   }
+   
+   set color(val) {
+      this.setAttribute('color', val);
+   }
+   get color() {
+      return this.#ATTRIBUTES['color'];
+   }
+   
+   set innerColor(val) {
+      this.setAttribute('inner-color', val);
+   }
+   get innerColor() {
+      return this.#ATTRIBUTES['inner-color'];
    }
 }

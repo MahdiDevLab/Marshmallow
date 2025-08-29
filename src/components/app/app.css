@@ -1,6 +1,6 @@
 :host {
    --color: "$color";
-   --inner-color: "$innerColor";
+   --inner-color: "$inner-color";
    
    display: block;
    position: relative;

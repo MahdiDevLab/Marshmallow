@@ -2,23 +2,24 @@ class App extends HTMLElement {
    //------------------
    // Private Variable 
    //------------------
-   #ELM; // Element 
-   #ATT; // Attributes 
-   #CSS; // CSS Code
-   #MT; // Marshmallow Tools
+   #MT;
+   #CSS;
+   #ELEMENT;
+   #ATTRIBUTES;
+   #DEFAULT_ATTRIBUTES = {
+      'color': 'var(--m-app-color, #000)',
+      'inner-color': 'var(--m-app-inner-color, #fff)',
+   }
    
    //-------------
    // Constructor
    //-------------
    constructor() {
       super();
-      this.#ELM = this.attachShadow({ mode: 'open' });
+      this.#ELEMENT = this.attachShadow({ mode: 'open' });
       this.#MT = MarshmallowTools;
       this.#CSS = `<CSS/>`
-      this.#ATT = {
-         color: 'var(--m-app-color, var(--m-background))',
-         innerColor: 'var(--m-app-inner-color, var(--m-on-background))',
-      }
+      this.#ATTRIBUTES = { ...this.#DEFAULT_ATTRIBUTES };
       
       // render 
       this.#render();
@@ -31,25 +32,25 @@ class App extends HTMLElement {
       return ['color', 'inner-color'];
    }
    attributeChangedCallback(name, oldValue, newValue) {
+      if (newValue === null) {
+         this.#ATTRIBUTES[name] = this.#DEFAULT_ATTRIBUTES[name];
+         this.#updateStyles();
+         return;
+      }
       switch (name) {
          case 'color': {
-            let {color, innerColor} = this.#MT.getColors(newValue);
+            let { color } = this.#MT.getColors();
             if (color) {
-               this.#ATT.color = color;
-               if (!this.hasAttribute('inner-color')) {
-                  this.setAttribute('inner-color', innerColor);
-               }
-               this.#updateStyles();
+               this.#ATTRIBUTES[name] = color;
+               this.#updateStyles;
             }
-            break;
          }
          case 'inner-color': {
-            let {color} = this.#MT.getColors(newValue);
+            let { color } = this.#MT.getColors();
             if (color) {
-               this.#ATT.innerColor = color;
-               this.#updateStyles();
+               this.#ATTRIBUTES[name] = color;
+               this.#updateStyles;
             }
-            break;
          }
       }
    }
@@ -58,15 +59,15 @@ class App extends HTMLElement {
    // private Methods
    //-----------------
    #updateStyles() {
-      const style = this.#ELM.querySelector('style');
+      const style = this.#ELEMENT.querySelector('style');
       style.textContent = this.#getStyle();
    }
    
    #getStyle() {
       let css = this.#CSS;
       const vals = {
-         color: this.#ATT.color,
-         innerColor: this.#ATT.innerColor,
+         'color': this.#ATTRIBUTES['color'],
+         'inner-color': this.#ATTRIBUTES['inner-color'],
       };
       
       for (let key in vals) {
@@ -77,7 +78,7 @@ class App extends HTMLElement {
    }
    
    #render() {
-      this.#ELM.innerHTML = `
+      this.#ELEMENT.innerHTML = `
          <style>
             ${this.#getStyle()}
          </style>
@@ -92,13 +93,13 @@ class App extends HTMLElement {
       this.setAttribute('color', val);
    }
    get color() {
-      return this.#ATT.color; 
+      return this.#ATTRIBUTES['color'];
    }
    
    set innerColor(val) {
       this.setAttribute('inner-color', val);
    }
    get innerColor() {
-      return this.#ATT.innerColor; 
+      return this.#ATTRIBUTES['inner-color'];
    }
 }
