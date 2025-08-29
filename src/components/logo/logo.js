@@ -30,32 +30,39 @@ class Logo extends HTMLElement {
    // Observed Attributes
    //---------------------
    static get observedAttributes() {
-      return ['size','color','inner-color'];
+      return ['size', 'color', 'inner-color'];
    }
+   
    attributeChangedCallback(name, oldValue, newValue) {
+      if (oldValue === newValue) return;
+      
       if (newValue === null) {
          this.#ATTRIBUTES[name] = this.#DEFAULT_ATTRIBUTES[name];
          this.#updateStyles();
          return;
       }
+      
       switch (name) {
          case 'size': {
             this.#ATTRIBUTES[name] = newValue;
-            this.#updateStyles;
+            this.#updateStyles(); // ✅ اصلاح شد
+            break;
          }
          case 'color': {
-            let {color} = this.#MT.getColors();
+            let { color } = this.#MT.getColors(newValue);
             if (color) {
                this.#ATTRIBUTES[name] = color;
-               this.#updateStyles;
+               this.#updateStyles();
             }
+            break;
          }
          case 'inner-color': {
-            let {color} = this.#MT.getColors();
+            let { color } = this.#MT.getColors(newValue);
             if (color) {
                this.#ATTRIBUTES[name] = color;
-               this.#updateStyles;
+               this.#updateStyles();
             }
+            break;
          }
       }
    }
@@ -65,8 +72,11 @@ class Logo extends HTMLElement {
    //-----------------
    #updateStyles() {
       const style = this.#ELEMENT.querySelector('style');
-      style.textContent = this.#getStyle();
+      if (style) {
+         style.textContent = this.#getStyle();
+      }
    }
+   
    #getStyle() {
       let css = this.#CSS;
       const vals = {
@@ -81,11 +91,10 @@ class Logo extends HTMLElement {
       
       return css;
    }
+   
    #render() {
       this.#ELEMENT.innerHTML = `
-         <style>
-            ${this.#getStyle()}
-         </style>
+         <style>${this.#getStyle()}</style>
          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
 	         <path class="bg" d="M 500,0 C 850,0 1000,150 1000,500 C 1000,850 850,1000 500,1000 C 150,1000 0,850 0,500 C 0,150 150,0 500,0z" />
 	         <path class="fg" d="M 300,300 C 300,150 700,150 700,300 L 700,700 C 700,850 300,850 300,700 L 300,300z" />

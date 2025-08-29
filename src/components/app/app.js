@@ -7,8 +7,8 @@ class App extends HTMLElement {
    #ELEMENT;
    #ATTRIBUTES;
    #DEFAULT_ATTRIBUTES = {
-      'color': 'var(--m-app-color, #000)',
-      'inner-color': 'var(--m-app-inner-color, #fff)',
+      'color': 'var(--m-app-color, var(--m-background))',
+      'inner-color': 'var(--m-app-inner-color, var(--m-on-background))',
    }
    
    //-------------
@@ -31,26 +31,32 @@ class App extends HTMLElement {
    static get observedAttributes() {
       return ['color', 'inner-color'];
    }
+   
    attributeChangedCallback(name, oldValue, newValue) {
+      if (oldValue === newValue) return;
+      
       if (newValue === null) {
          this.#ATTRIBUTES[name] = this.#DEFAULT_ATTRIBUTES[name];
          this.#updateStyles();
          return;
       }
+      
       switch (name) {
          case 'color': {
-            let { color } = this.#MT.getColors();
+            let { color } = this.#MT.getColors(newValue);
             if (color) {
                this.#ATTRIBUTES[name] = color;
-               this.#updateStyles;
+               this.#updateStyles();
             }
+            break;
          }
          case 'inner-color': {
-            let { color } = this.#MT.getColors();
+            let { color } = this.#MT.getColors(newValue);
             if (color) {
                this.#ATTRIBUTES[name] = color;
-               this.#updateStyles;
+               this.#updateStyles();
             }
+            break;
          }
       }
    }
@@ -60,7 +66,9 @@ class App extends HTMLElement {
    //-----------------
    #updateStyles() {
       const style = this.#ELEMENT.querySelector('style');
-      style.textContent = this.#getStyle();
+      if (style) {
+         style.textContent = this.#getStyle();
+      }
    }
    
    #getStyle() {
@@ -79,9 +87,7 @@ class App extends HTMLElement {
    
    #render() {
       this.#ELEMENT.innerHTML = `
-         <style>
-            ${this.#getStyle()}
-         </style>
+         <style>${this.#getStyle()}</style>
          <slot></slot>
       `;
    }
