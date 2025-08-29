@@ -52,3 +52,5 @@
 - [ ] string.xml
    - [ ] lang
 - [ ] pages.xml
+- [ ] Clock API
+- [ ] DOM API 
