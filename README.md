@@ -4,7 +4,7 @@
 - [x] App
 - [x] Logo
 - [x] Divider
-- [ ] Button
+- [x] Button
 - [ ] Buttons Group
 - [ ] Radio
 - [ ] Checkbox

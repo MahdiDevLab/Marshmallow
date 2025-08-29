@@ -1,0 +1,67 @@
+/*** button.css v1 ***/
+:host {
+   --color: "$color";
+   --inner-color: "$inner-color";
+   
+   display: inline-flex;
+   justify-content: center;
+   align-items: center;
+   padding: 8px 20px;
+   gap: 8px;
+   background: var(--color);
+   color: var(--inner-color);
+   height: 40px;
+   box-sizing: border-box;
+   border-radius: 16px;
+   border: none;
+   user-select: none;
+   cursor: pointer;
+   vertical-align: middle;
+   font-size: 16px;
+   font-weight: 700;
+   white-space: normal;
+   transition-property: scale, opacity;
+   transition-duration: 0.3s;
+}
+
+:host([outline]) {
+   background: transparent;
+   border: 2px solid var(--color);
+   color: var(--color);
+}
+
+:host([text]) {
+   background: transparent;
+   color: var(--color);
+}
+
+:host([size="small"]) {
+   padding: 0 15px;
+   gap: 6px;
+   --radius: 12px;
+   font-size: 14px;
+   height: 30px;
+}
+
+:host([size="large"]) {
+   padding: 0 30px;
+   gap: 12px;
+   --radius: 24px;
+   font-size: 20px;
+   height: 60px
+}
+
+:host([disabled]) {
+   opacity: 0.5;
+   cursor: not-allowed;
+   pointer-events: none;
+}
+
+:host([full]) {
+   display: flex;
+}
+
+:host(:active) {
+   scale: 0.95;
+   opacity: 0.75;
+}

@@ -58,10 +58,12 @@ class Divider extends HTMLElement {
          case 'gap': {
             this.#ATTRIBUTES[name] = newValue;
             this.#updateStyles();
+            break;
          }
          case 'round': {
             this.#ATTRIBUTES[name] = this.hasAttribute(name);
             this.#updateStyles();
+            break;
          }
       }
    }
@@ -129,9 +131,11 @@ class Divider extends HTMLElement {
    }
    
    set round(val) {
-      this.setAttribute('round', val);
+      val ? this.setAttribute('round', '') : this.removeAttribute('round');
    }
    get round() {
       return this.#ATTRIBUTES['round'];
    }
+   
+   
 }
