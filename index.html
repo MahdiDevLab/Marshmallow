@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <!-- Title -->
    <title>Marshmallow</title>
-   <!-- Styles --> 
-      <!-- <link rel="stylesheet/less" href="styles/main.less"> -->
+   <!-- Styles -->
    <!-- Libs -->
-      <!-- <script src="scripts/less.js"></script> -->
    <script src="src/BundleNow.js"></script>
 </head>
+
 <body>
    <m-app style="padding: 10px;">
       
-      <m-logo color="@Primary" size="32px"></m-logo> 
-      <b>Marshmallow.js</b>
-      
+      <h1>
+         <m-logo color="@Primary" inner-color="@On-Primary" size="1.8em"></m-logo>
+         Marshmallow
+      </h1>
+
       <m-divider round></m-divider>
       
-      <m-button> Marshmallow is back </m-button>
+      <m-button disabled> Marshmallow is back </m-button>
+      <m-checkbox></m-checkbox>
       
    </m-app>
-   <script src="scripts/main.js"></script>
+   <script>
+      BundleNow.apply();
+      
+      BundleNow.onapply = () => {
+         const M = new Marshmallow();
+      }
+   </script>
 </body>
+
 </html>

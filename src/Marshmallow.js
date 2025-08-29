@@ -1,4 +1,4 @@
-// Marshmallow <Version/>
+// Marshmallow <version/>
 ((G) => {
    //-------------------------
    //          Libs
@@ -19,7 +19,11 @@
       /* Private Variables */
       #M;
       #C = {
+         color: 'Deep Sky Blue',
+         surfaceColor: 'primary',
          theme: 'light',
+         contrast: 50,
+         colorHarmony: 'analogous',
       };
       #O = {
          styleElement: null,
@@ -28,8 +32,9 @@
       #FirstGrow = true;
       
       /* Constructor */
-      constructor() {
-         this.version = '<Version/>';
+      constructor(config) {
+         this.version = '<version/>';
+         this.#C = Object.assign({},config,this.#C);
          
          this.#M = this.#setUpMushroom();
          this.#M.ongrow = () => this.#grow();
@@ -41,11 +46,25 @@
       }
       #setUpMushroom() {
          return new Mushroom({
-            prefix: 'm',
-            sprout: false,
-            color: 'deepskyblue',
+            color: this.#C.color,
+            surfaceColor: this.#C.surfaceColor,
             theme: this.#C.theme,
-            contrast: 50,
+            contrast: this.#C.contrast,
+            colorHarmony: this.#C.colorHarmony,
+            
+            // Marshmallow default 
+            prefix: 'm',
+            clearConsole: true,
+            sprout: false,
+            root: ':root',
+            hasPalette: true,
+            hasSubPalette: true,
+            hasColorLoopPalette: true,
+            hasSubColorLoopPalette: true,
+            reverseSubPalette: false,
+            fixedSubPalette: false,
+            parts: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+            customColors: {},
          });
       }
       #grow() {
@@ -69,6 +88,11 @@
             this.#FirstGrow = false;
          }
          
+      }
+      
+      /* Methods */
+      toggleTheme(){
+         this.#M.toggleTheme();
       }
    }
    

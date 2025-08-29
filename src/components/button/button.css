@@ -1,4 +1,3 @@
-/*** button.css v1 ***/
 :host {
    --color: "$color";
    --inner-color: "$inner-color";
@@ -20,7 +19,7 @@
    font-size: 16px;
    font-weight: 700;
    white-space: normal;
-   transition-property: scale, opacity;
+   transition-property: scale, opacity, filter;
    transition-duration: 0.3s;
 }
 
@@ -53,6 +52,7 @@
 
 :host([disabled]) {
    opacity: 0.5;
+   filter: grayscale(0.75);
    cursor: not-allowed;
    pointer-events: none;
 }

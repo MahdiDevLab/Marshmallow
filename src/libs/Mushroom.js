@@ -1,4 +1,4 @@
-// Mushroom v5.3.3 (Marshmallow EDITION!)
+// Mushroom v5.3.4 (Marshmallow EDITION!)
 class Mushroom {
    
    //-------------------------
@@ -71,6 +71,9 @@ class Mushroom {
       theme: i => {
          return this.#V.str(i) && /^(light|dark|auto)$/.test(i);
       },
+      root: i => {
+         return this.#V.str(i);
+      },
       colorHarmony: i => {
          return this.#V.str(i) && /^(analogous|complementary|tetradic|compound|split-complementary|monochromatic|triadic|square)$/.test(i);
       },
@@ -117,6 +120,7 @@ class Mushroom {
       'color': 'Invalid color "$1"!\nAccepted formats: 148 standard colors, Hex, RGB, HSL, CMYK, or HSV',
       'surfaceColor': 'Invalid surfaceColor "$1".\nAccepted formats: 148 standard colors, Hex, RGB, HSL, CMYK, or HSV',
       'theme': 'Invalid theme "$1"!\nMust be a string value exactly matching: "light", "dark", or "auto"',
+      'root': 'Invalid root "$1"!\nMust be a string value',
       'colorHarmony': 'Invalid colorHarmony "$1".\nMust be a string exactly matching: "analogous", "complementary", "triadic", "tetradic", "square", "compound", "split-complementary", or "monochromatic"',
       'contrast': 'Invalid contrast "$1"!\nMust be: number (0-100) or string "auto"',
       'parts': 'Invalid parts "$1"!\nMust be an array of numbers (0-100)',
@@ -787,7 +791,7 @@ class Mushroom {
    
    /* API */
    toggleTheme() {
-      this.setTheme(isDarkmode() ? 'light' : 'dark');
+      this.setTheme(this.isDarkmode() ? 'light' : 'dark');
       return this;
    }
    randomColor() {

@@ -175,9 +175,9 @@ class Button extends HTMLElement {
       return this.#ATTRIBUTES['disabled'];
    }
    
-   //----------
-   // Property 
-   //----------
+   //---------
+   // Methods
+   //---------
    toggleDisabled() {
       this.disabled = !this.disabled;
    }

@@ -1094,6 +1094,7 @@
    const BundleNow = {
       Config: null,
       Task: null,
+      Bundled: false,
       
       dispatchEvent(event, detail = {}) {
          E.dispatchEvent(new CustomEvent(event, { detail }));
@@ -1145,6 +1146,10 @@
                type: 'inline',
                value: this.Config.components.map(i => `customElements.define('m-${SplitPascalCase(i).split(' ').join().toLowerCase()}', ${i})`).join('\n'),
             });
+            MB.addVariables('version', {
+               type: 'inline',
+               value: this.Config.version,
+            });
             
             SB.setType('url');
             SB.setKey('@KEY')
@@ -1179,21 +1184,24 @@
             
             MB.onstart = (detail) => this.dispatchEvent('start', detail);
             MB.onprogress = (detail) => this.dispatchEvent('progress', detail);
-            MB.onbundled = (detail) => this.dispatchEvent('bundled', detail);
+            MB.onbundled = (detail) => {
+               this.dispatchEvent('bundled', detail);
+               this.Bundled = true;
+            }
             MB.onapply = (detail) => this.dispatchEvent('apply', detail);
             
          })
       },
       apply() {
-         this.bundle();
+         if (!this.Bundled) this.bundle();
          this.onbundled = () => {
             MB.apply();
          }
       },
       download() {
-         this.bundle();
+         if (!this.Bundled) this.bundle();
          this.onbundled = () => {
-            MB.download(this.Config.name);
+            MB.download(this.Config.name+'.'+this.Config.version+'.js');
          }
       },
       
