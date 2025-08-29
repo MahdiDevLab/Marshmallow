@@ -1,6 +1,6 @@
-# Marshmallow
+# Marshmallow 0.4.0
 
-### todo list
+### Components
 - [x] App
 - [x] Logo
 - [x] Divider
@@ -47,3 +47,8 @@
 - [ ] Phone
 - [ ] Ninos
 - [ ] Clock
+
+### API 
+- [ ] string.xml
+   - [ ] lang
+- [ ] pages.xml
